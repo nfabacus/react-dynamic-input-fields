@@ -13,7 +13,7 @@ class App extends Component {
       listLength: 100,
       itemsPerPage: 10,
       currentPage: 1,
-      numOfPagesDisplayed: 4
+      numOfPageButtons: 4
     }
   }
 
@@ -55,13 +55,13 @@ class App extends Component {
     const itemsPerPage = this.state.itemsPerPage
     const numOfPages = Math.ceil(listLength/itemsPerPage)
     const currentPage = this.state.currentPage
-    const numOfPagesDisplayed = this.state.numOfPagesDisplayed
+    const numOfPageButtons = this.state.numOfPageButtons
 
-    let numOfPageGroups = parseInt(currentPage/numOfPagesDisplayed)
-    const rangeModulus = currentPage%numOfPagesDisplayed
+    let numOfPageGroups = parseInt(currentPage/numOfPageButtons)
+    const rangeModulus = currentPage%numOfPageButtons
     if(rangeModulus === 0) {numOfPageGroups -=1 }
-    const start = (numOfPagesDisplayed * numOfPageGroups)+1
-    const end = Math.min(start + numOfPagesDisplayed-1, numOfPages)
+    const start = (numOfPageButtons * numOfPageGroups)+1
+    const end = Math.min(start + numOfPageButtons-1, numOfPages)
 
     console.log("numOfPages: ", numOfPages)
     console.log("numOfPageGroups: ", numOfPageGroups)
