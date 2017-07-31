@@ -12,7 +12,8 @@ class App extends Component {
 
       listLength: 100,
       itemsPerPage: 10,
-      currentPage: 1
+      currentPage: 1,
+      numOfPagesDisplayed: 4
     }
   }
 
@@ -53,46 +54,42 @@ class App extends Component {
     const listLength = this.state.listLength
     const itemsPerPage = this.state.itemsPerPage
     const numOfPages = Math.ceil(listLength/itemsPerPage)
-    const {currentPage} = this.state
+    const currentPage = this.state.currentPage
+    const numOfPagesDisplayed = this.state.numOfPagesDisplayed
 
-    if(currentPage-1 ===0 || currentPage-2 ===0 ) {
-      for (let i=1;i<=5; i++) {
-        console.log(i)
-        if(i<=numOfPages) {
-          paginationButtons.push(i)
-        }
-      }
-    }
-    if(currentPage-2 >=1 ) {
-      if(currentPage+1>numOfPages){
-        for (let i=(currentPage-4);i!==currentPage+1; i++) {
-          console.log("check")
-          if(i>=1&&i<=numOfPages) {
-            paginationButtons.push(i)
-          }
-        }
-      }
-      if(currentPage+1===numOfPages){
-        for (let i=(currentPage-3);i!==currentPage+2; i++) {
-          console.log(i)
-          if(i>=1&&i<=numOfPages) {
-            paginationButtons.push(i)
-          }
-        }
-      }
-      if(currentPage+2<=numOfPages){
-        console.log("current Page: ", currentPage)
-        console.log("paginationButtons: ", paginationButtons)
-        for (let i=currentPage-2;i!==currentPage+3; i++) {
-          if(i>=1&&i<=numOfPages) {
-            paginationButtons.push(i)
-          }
-        }
-      }
-    }
+    let numOfPageGroups = parseInt(currentPage/numOfPagesDisplayed)
+    const rangeModulus = currentPage%numOfPagesDisplayed
+    if(rangeModulus === 0) {numOfPageGroups -=1 }
+    const start = (numOfPagesDisplayed * numOfPageGroups)+1
+    const end = Math.min(start + numOfPagesDisplayed-1, numOfPages)
 
-    return paginationButtons.map(pageBtn=>
-      <button key={pageBtn} onClick={()=>this.setCurrentPage(pageBtn)}>Page {pageBtn}</button>
+    console.log("numOfPages: ", numOfPages)
+    console.log("numOfPageGroups: ", numOfPageGroups)
+    console.log("start: ", start)
+    console.log("end: ", end)
+
+
+    for (let i=start;i<=end; i++) {
+        paginationButtons.push(i)
+    }
+    return (
+      <div>
+        {(start-1)>1&&(<a onClick={()=>this.setCurrentPage(1)}>1 ...</a>)}
+        &nbsp;
+        {(start-1)>1&&(<a onClick={()=>this.setCurrentPage(start-1<1?start:start-1)}>Previous</a>)}
+        {paginationButtons.map(pageBtn=>
+          <button
+            key={pageBtn}
+            onClick={()=>this.setCurrentPage(pageBtn)}
+            className={pageBtn===this.state.currentPage?"active":""}
+          >
+            Page {pageBtn}
+          </button>
+        )}
+        {(end+1)<numOfPages&&(<a onClick={()=>this.setCurrentPage(end+1>numOfPages?end:end+1)}>Next</a>)}
+        &nbsp;
+        {(end+1)<numOfPages&&(<a onClick={()=>this.setCurrentPage(numOfPages)}>... {numOfPages}</a>)}
+      </div>
     )
   }
 
@@ -149,7 +146,9 @@ class App extends Component {
           <h4>
             Current Page: {this.state.currentPage}
           </h4>
+
           {this.renderPagenationBtns()}
+
 
         </div>
 
