@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Sticky from 'react-sticky-el';
 
 class App extends Component {
   constructor(props) {
@@ -20,8 +21,8 @@ class App extends Component {
   focus1=()=>{
     this.textInput1.focus()
   }
-  focus2=()=>{
-    this.textInput2.focus()
+  blur1=()=>{
+    this.textInput2.blur()
   }
 
   onInputChange = (e)=>{
@@ -97,62 +98,68 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>React Input Fields Examples</h2>
-        </div>
-        <div>
-          <br />
-          <h3>Type Something, and Hit Enter</h3>
-          <input
-            value={this.state.inputMessage}
-            onChange={this.onInputChange}
-            onKeyPress={this.handleKeyPress}
-          />
-        </div>
-        <h3>
-          {this.state.displayMessage}
-        </h3>
 
-        <div>
-          <br />
-          <h3>Multiple Input Fields and Enter</h3>
-          <br />
-          <button onClick={this.focus1}>Click me to focus1!</button>
-          <button onClick={this.focus2}>Click me to focus2!</button>
-          <br />
-          <input className="inputBox"
-            ref={(input)=>{ this.textInput1=input; }}
-          />
-          <input className="inputBox"
-            ref={(input)=>{ this.textInput2=input; }}
-          />
-          <input className="inputBox"
-            ref={(input)=>{ this.textInput3=input; }}
-          />
-          <input className="inputBox"
-            ref={(input)=>{ this.textInput4=input; }}
-          />
-          <input className="inputBox"
-            ref={(input)=>{ this.textInput5=input; }}
-          />
-        </div>
-
-        <div>
-          <h3>Pagination Test</h3>
-          <h4>
-            Number of Pages: {this.state.listLength/this.state.itemsPerPage}
-          </h4>
-          <h4>
-            Current Page: {this.state.currentPage}
-          </h4>
-
-          {this.renderPagenationBtns()}
+            <div className="App-header">
+              <img src={logo} className="App-logo" alt="logo" />
+              <h2>React Input Fields Examples</h2>
+            </div>
 
 
-        </div>
+        <Sticky>
+          <div>
+            <br />
+            <h3>Type Something, and Hit Enter</h3>
+            <input
+              value={this.state.inputMessage}
+              onChange={this.onInputChange}
+              onKeyPress={this.handleKeyPress}
+            />
+          </div>
+          <div>
+            <h3>Stacked div</h3>
+          </div>
+        </Sticky>
+          <h3>
+            {this.state.displayMessage}
+          </h3>
+
+          <div>
+            <br />
+            <h3>Multiple Input Fields and Enter</h3>
+            <br />
+            <button onClick={this.focus1}>Click me to focus1!</button>
+            <button onClick={this.blur1}>Click me to blur1!</button>
+            <br />
+            <input className="inputBox"
+              ref={(input)=>{ this.textInput1=input; }}
+            />
+            <input className="inputBox"
+              ref={(input)=>{ this.textInput2=input; }}
+            />
+            <input className="inputBox"
+              ref={(input)=>{ this.textInput3=input; }}
+            />
+            <input className="inputBox"
+              ref={(input)=>{ this.textInput4=input; }}
+            />
+            <input className="inputBox"
+              ref={(input)=>{ this.textInput5=input; }}
+            />
+          </div>
+
+          <div>
+            <h3>Pagination Test</h3>
+            <h4>
+              Number of Pages: {this.state.listLength/this.state.itemsPerPage}
+            </h4>
+            <h4>
+              Current Page: {this.state.currentPage}
+            </h4>
+
+            {this.renderPagenationBtns()}
 
 
+          </div>
 
       </div>
     );
