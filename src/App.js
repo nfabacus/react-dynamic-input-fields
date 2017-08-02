@@ -22,11 +22,7 @@ class App extends Component {
     this.textInput1.focus()
   }
   blur1=()=>{
-<<<<<<< HEAD
     this.textInput1.blur()
-=======
-    this.textInput2.blur()
->>>>>>> 7254341b9836c1c45564b34b79cea3daa210b9e7
   }
 
   onInputChange = (e)=>{
@@ -102,62 +98,6 @@ class App extends Component {
 
     return (
       <div className="App">
-<<<<<<< HEAD
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>React Input Fields Examples</h2>
-        </div>
-        <div>
-          <br />
-          <h3>Type Something, and Hit Enter</h3>
-          <input
-            value={this.state.inputMessage}
-            onChange={this.onInputChange}
-            onKeyPress={this.handleKeyPress}
-          />
-        </div>
-        <h3>
-          {this.state.displayMessage}
-        </h3>
-
-        <div>
-          <br />
-          <h3>Multiple Input Fields and Enter</h3>
-          <br />
-          <button onClick={this.focus1}>Click me to focus1!</button>
-          <button onClick={this.blur1}>Click me to blur1!</button>
-          <br />
-          <input className="inputBox"
-            ref={(input)=>{ this.textInput1=input; }}
-          />
-          <input className="inputBox"
-            ref={(input)=>{ this.textInput2=input; }}
-          />
-          <input className="inputBox"
-            ref={(input)=>{ this.textInput3=input; }}
-          />
-          <input className="inputBox"
-            ref={(input)=>{ this.textInput4=input; }}
-          />
-          <input className="inputBox"
-            ref={(input)=>{ this.textInput5=input; }}
-          />
-        </div>
-
-        <div>
-          <h3>Pagination Test</h3>
-          <h4>
-            Number of Pages: {this.state.listLength/this.state.itemsPerPage}
-          </h4>
-          <h4>
-            Current Page: {this.state.currentPage}
-          </h4>
-          {this.renderPagenationBtns()}
-
-        </div>
-
-=======
->>>>>>> 7254341b9836c1c45564b34b79cea3daa210b9e7
 
             <div className="App-header">
               <img src={logo} className="App-logo" alt="logo" />
