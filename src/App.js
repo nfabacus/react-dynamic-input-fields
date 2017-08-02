@@ -19,8 +19,8 @@ class App extends Component {
   focus1=()=>{
     this.textInput1.focus()
   }
-  focus2=()=>{
-    this.textInput2.focus()
+  blur1=()=>{
+    this.textInput1.blur()
   }
 
   onInputChange = (e)=>{
@@ -122,7 +122,7 @@ class App extends Component {
           <h3>Multiple Input Fields and Enter</h3>
           <br />
           <button onClick={this.focus1}>Click me to focus1!</button>
-          <button onClick={this.focus2}>Click me to focus2!</button>
+          <button onClick={this.blur1}>Click me to blur1!</button>
           <br />
           <input className="inputBox"
             ref={(input)=>{ this.textInput1=input; }}
