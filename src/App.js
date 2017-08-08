@@ -14,9 +14,23 @@ class App extends Component {
       listLength: 100,
       itemsPerPage: 10,
       currentPage: 1,
-      numOfPageButtons: 4
+      numOfPageButtons: 4,
+
+      width: window.innerWidth
     }
   }
+
+  componentWillMount() {
+    window.addEventListener('resize', this.handleWindowSizeChange);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleWindowSizeChange);
+  }
+
+  handleWindowSizeChange = () => {
+    this.setState({ width: window.innerWidth });
+  };
 
   focus1=()=>{
     this.textInput1.focus()
@@ -95,7 +109,12 @@ class App extends Component {
   }
 
   render() {
+    const { width } = this.state;
+    const isMobile = width <= 750;
+    if(isMobile) {
+      return <h1>You are on Mobile view!!</h1>
 
+    }
     return (
       <div className="App">
 
